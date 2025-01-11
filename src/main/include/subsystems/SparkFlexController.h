@@ -1,4 +1,4 @@
-#include "rev/CANSparkFlex.h"
+#include "rev/SparkFlex.h"
 
 class SparkFlexController
 {
@@ -8,6 +8,6 @@ public:
     
 private:
     int canID = 2;
-    rev::CANSparkFlex sparkFlexMotor{canID, rev::CANSparkFlex::MotorType::kBrushless};
-    rev::SparkRelativeEncoder sparkFlexEncoder = sparkFlexMotor.GetEncoder(rev::SparkRelativeEncoder::Type::kHallSensor);
+    rev::spark::SparkFlex sparkFlexMotor{canID, rev::spark::SparkFlex::MotorType::kBrushless};
+    rev::spark::SparkRelativeEncoder sparkFlexEncoder = sparkFlexMotor.GetEncoder();
 };

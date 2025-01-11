@@ -11,6 +11,7 @@
 #include "subsystems/SparkFlexController.h"
 #include "subsystems/SparkMaxController.h"
 #include "subsystems/TalonFXController.h"
+#include "subsystems/VictorSPXController.h"
 #include "frc/XboxController.h"
 #include "frc/smartdashboard/SmartDashboard.h"
 
@@ -30,8 +31,9 @@ class Robot : public frc::TimedRobot {
   void SimulationPeriodic() override;
 private:
   SparkMaxController sparkMaxController{};
-  // SparkFlexController sparkFlexController{};
-  // TalonFXController talonFXController{};
+  SparkFlexController sparkFlexController{};
+  TalonFXController talonFXController{};
+  VictorSPXController victorSPXController{};
 
   frc::XboxController gamepad{0};
 };

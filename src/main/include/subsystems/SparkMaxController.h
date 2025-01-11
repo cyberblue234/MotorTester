@@ -1,16 +1,15 @@
-#include "rev/CANSparkMax.h"
+#include "rev/SparkMax.h"
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <units/voltage.h>
 
 class SparkMaxController
 {
 public:
-    SparkMaxController() {sparkMaxMotor.RestoreFactoryDefaults();};
     void SetMotorPower(double power);
     double GetEncoderCount();
     
 private:
     int canID = 7;
-    rev::CANSparkMax sparkMaxMotor{canID, rev::CANSparkMax::MotorType::kBrushless};
-    rev::SparkRelativeEncoder sparkMaxEncoder = sparkMaxMotor.GetEncoder(rev::SparkRelativeEncoder::Type::kHallSensor);
+    rev::spark::SparkMax sparkMaxMotor{canID, rev::spark::SparkMax::MotorType::kBrushless};
+    rev::spark::SparkRelativeEncoder sparkMaxEncoder = sparkMaxMotor.GetEncoder();
 };

@@ -19,9 +19,12 @@ void Robot::TeleopInit() {}
 
 void Robot::TeleopPeriodic() 
 {
-  // sparkFlexController.SetMotorPower(gamepad.GetLeftY());
-  sparkMaxController.SetMotorPower(gamepad.GetLeftY());
-  // talonFXController.SetMotorPower(gamepad.GetLeftY());
+  double power = gamepad.GetLeftY();
+  if (abs(power) < 0.2) power = 0; 
+  sparkFlexController.SetMotorPower(power);
+  sparkMaxController.SetMotorPower (power);
+  talonFXController.SetMotorPower  (power);
+  victorSPXController.SetMotorPower(power);
   frc::SmartDashboard::PutNumber("Gamepad Y", gamepad.GetLeftY());
 }
 
