@@ -19,13 +19,30 @@ void Robot::TeleopInit() {}
 
 void Robot::TeleopPeriodic() 
 {
-  double power = gamepad.GetLeftY();
-  if (abs(power) < 0.2) power = 0; 
+  static double power;
+  bool direction1 = gamepad.GetYButton();
+  bool direction2 = gamepad.GetAButton();
+  
+  power = frc::SmartDashboard::GetNumber("Power", 0.0);
+  frc::SmartDashboard::PutNumber("Power", power);
+  
+  if(direction1)
+  {
+    power = -power;
+  }
+  else if(direction2)
+  {
+    power = power;
+  }
+  else
+  {
+    power = 0.0;
+  }
+  frc::SmartDashboard::PutNumber("ShowPower", power);
   sparkFlexController.SetMotorPower(power);
   sparkMaxController.SetMotorPower (power);
   talonFXController.SetMotorPower  (power);
   victorSPXController.SetMotorPower(power);
-  frc::SmartDashboard::PutNumber("Gamepad Y", gamepad.GetLeftY());
 }
 
 void Robot::DisabledInit() {}
