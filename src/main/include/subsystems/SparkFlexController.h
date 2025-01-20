@@ -1,4 +1,5 @@
 #include "rev/SparkFlex.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 class SparkFlexController
 {
@@ -7,7 +8,7 @@ public:
     double GetEncoderCount();
     
 private:
-    int canID = 2;
+    int canID = frc::SmartDashboard::GetNumber("Flex id", 0);
     rev::spark::SparkFlex sparkFlexMotor{canID, rev::spark::SparkFlex::MotorType::kBrushless};
     rev::spark::SparkRelativeEncoder sparkFlexEncoder = sparkFlexMotor.GetEncoder();
 };

@@ -5,11 +5,19 @@
 #include "Robot.h"
 
 #include <fmt/core.h>
-#include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/shuffleboard/Shuffleboard.h>
 
-void Robot::RobotInit() {}
+void Robot::RobotInit() 
+{
+	frc::SmartDashboard::PutNumber("Flex id", 1);
+	frc::SmartDashboard::PutNumber("Talon id", 1);
+}
 
-void Robot::RobotPeriodic() {}
+void Robot::RobotPeriodic() 
+{
+	frc::SmartDashboard::SetPersistent("Flex id");
+	frc::SmartDashboard::SetPersistent("Talon id");
+}
 
 void Robot::AutonomousInit() {}
 
@@ -19,30 +27,32 @@ void Robot::TeleopInit() {}
 
 void Robot::TeleopPeriodic() 
 {
-  static double power;
-  bool direction1 = gamepad.GetYButton();
-  bool direction2 = gamepad.GetAButton();
-  
-  power = frc::SmartDashboard::GetNumber("Power", 0.0);
-  frc::SmartDashboard::PutNumber("Power", power);
-  
-  if(direction1)
-  {
-    power = -power;
-  }
-  else if(direction2)
-  {
-    power = power;
-  }
-  else
-  {
-    power = 0.0;
-  }
-  frc::SmartDashboard::PutNumber("ShowPower", power);
-  sparkFlexController.SetMotorPower(power);
-  sparkMaxController.SetMotorPower (power);
-  talonFXController.SetMotorPower  (power);
-  victorSPXController.SetMotorPower(power);
+	double power;
+	bool direction1 = gamepad.GetYButton();
+	bool direction2 = gamepad.GetAButton();
+
+	
+	
+	power = frc::SmartDashboard::GetNumber("Power", 0.0);
+	frc::SmartDashboard::PutNumber("Power", power);
+	
+	if(direction1)
+	{
+		power = -power;
+	}
+	else if(direction2)
+	{
+		power = power;
+	}
+	else
+	{
+		power = 0.0;
+	}
+
+	sparkFlexController.SetMotorPower(power);
+	sparkMaxController.SetMotorPower (power);
+	talonFXController.SetMotorPower  (power);
+	victorSPXController.SetMotorPower(power);
 }
 
 void Robot::DisabledInit() {}
