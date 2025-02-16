@@ -2,11 +2,10 @@
 
 void TalonFXController::SetMotorPower(double power) 
 {
-    talonFX1Motor.Set(power);
-    frc::SmartDashboard::PutNumber("encoder", GetEncoderCount());
+    motor.Set(power);
 }
 
 double TalonFXController::GetEncoderCount()
 {
-    return talonFX1Motor.GetPosition().GetValue().value();
+    return motor.GetPosition().GetValue().value();
 }

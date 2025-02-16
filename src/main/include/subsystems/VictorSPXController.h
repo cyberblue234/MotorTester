@@ -1,14 +1,16 @@
 #include <ctre/phoenix/motorcontrol/can/victorspx.h>
-#include <frc/smartdashboard/SmartDashboard.h>
+
+using namespace ctre::phoenix;
 
 class VictorSPXController
 {
 public:
+    VictorSPXController(int id) : motor(id) {};
+
     void SetMotorPower(double power);
+
+    motorcontrol::can::VictorSPX *GetMotor() { return &motor; }
     
 private:
-    int canID = 1;
-
-    ctre::phoenix::motorcontrol::can::VictorSPX victorMotor{canID};
-    
+    motorcontrol::can::VictorSPX motor;
 };

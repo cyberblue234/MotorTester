@@ -1,14 +1,17 @@
 #include <ctre/phoenix6/TalonFX.hpp>
-#include <frc/smartdashboard/SmartDashboard.h>
+
+using namespace ctre::phoenix6;
 
 class TalonFXController
 {
 public:
+    TalonFXController(int id) : motor(id, "rio") {};
     void SetMotorPower(double power);
     double GetEncoderCount();
+
+    hardware::TalonFX *GetMotor() { return &motor; }
     
 private:
-    int canID = frc::SmartDashboard::GetNumber("Talon id", 0);
-    ctre::phoenix6::hardware::TalonFX talonFX1Motor{canID, "rio"};
+    hardware::TalonFX motor;
 
 };

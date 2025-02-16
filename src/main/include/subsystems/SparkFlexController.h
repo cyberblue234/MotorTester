@@ -1,14 +1,17 @@
 #include "rev/SparkFlex.h"
-#include <frc/smartdashboard/SmartDashboard.h>
+
+using namespace rev::spark;
 
 class SparkFlexController
 {
 public:
+    SparkFlexController(int id) : motor(id, rev::spark::SparkFlex::MotorType::kBrushless) {}
+
     void SetMotorPower(double power);
     double GetEncoderCount();
+
+    SparkFlex *GetMotor() { return &motor; }
     
 private:
-    int canID = frc::SmartDashboard::GetNumber("Flex id", 0);
-    rev::spark::SparkFlex sparkFlexMotor{canID, rev::spark::SparkFlex::MotorType::kBrushless};
-    rev::spark::SparkRelativeEncoder sparkFlexEncoder = sparkFlexMotor.GetEncoder();
+    SparkFlex motor;
 };
