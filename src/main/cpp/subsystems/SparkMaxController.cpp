@@ -2,11 +2,10 @@
 
 void SparkMaxController::SetMotorPower(double power) 
 {
-    sparkMaxMotor.Set(power);
-    frc::SmartDashboard::PutNumber("encoder", GetEncoderCount());
+    motor.Set(power);
 }
 
 double SparkMaxController::GetEncoderCount()
 {
-    return sparkMaxEncoder.GetPosition();
+    return motor.GetEncoder().GetPosition();
 }

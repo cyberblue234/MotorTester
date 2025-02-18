@@ -1,39 +1,51 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 #pragma once
 
 #include <string>
+#include <optional>
 
 #include <frc/TimedRobot.h>
+
 #include <frc/smartdashboard/SendableChooser.h>
+
 #include "subsystems/SparkFlexController.h"
 #include "subsystems/SparkMaxController.h"
 #include "subsystems/TalonFXController.h"
 #include "subsystems/VictorSPXController.h"
+#include "subsystems/CANrange.h"
+
 #include "frc/XboxController.h"
+
 #include "frc/smartdashboard/SmartDashboard.h"
 
-class Robot : public frc::TimedRobot {
- public:
-  void RobotInit() override;
-  void RobotPeriodic() override;
-  void AutonomousInit() override;
-  void AutonomousPeriodic() override;
-  void TeleopInit() override;
-  void TeleopPeriodic() override;
-  void DisabledInit() override;
-  void DisabledPeriodic() override;
-  void TestInit() override;
-  void TestPeriodic() override;
-  void SimulationInit() override;
-  void SimulationPeriodic() override;
-private:
-  SparkMaxController sparkMaxController{};
-  SparkFlexController sparkFlexController{};
-  TalonFXController talonFXController{};
-  VictorSPXController victorSPXController{};
+class Robot : public frc::TimedRobot
+{
+public:
+	void RobotInit() override;
+	void RobotPeriodic() override;
+	void AutonomousInit() override;
+	void AutonomousPeriodic() override;
+	void TeleopInit() override;
+	void TeleopPeriodic() override;
+	void DisabledInit() override;
+	void DisabledPeriodic() override;
+	void TestInit() override;
+	void TestPeriodic() override;
+	void SimulationInit() override;
+	void SimulationPeriodic() override;
 
-  frc::XboxController gamepad{0};
+	enum MotorControllers
+	{
+		SparkMax, SparkFlex, TalonFX, VictorSPX
+	};
+
+private:
+	std::optional<SparkMaxController> sparkMaxController;
+	int sparkMaxID = 7;
+	std::optional<SparkFlexController> sparkFlexController;
+	std::optional<TalonFXController> talonFXController;
+	std::optional<VictorSPXController> victorSPXController;
+	int victorSPXID = 1;
+	std::optional<CANrangeController> canRangeController;
+
+	frc::XboxController gamepad{0};
 };

@@ -1,15 +1,17 @@
 #include "rev/SparkMax.h"
-#include <frc/smartdashboard/SmartDashboard.h>
-#include <units/voltage.h>
+
+using namespace rev::spark;
 
 class SparkMaxController
 {
 public:
+    SparkMaxController(int id) : motor(id, SparkMax::MotorType::kBrushless) {}
+
     void SetMotorPower(double power);
     double GetEncoderCount();
+
+    SparkMax *GetMotor() { return &motor; }
     
 private:
-    int canID = 7;
-    rev::spark::SparkMax sparkMaxMotor{canID, rev::spark::SparkMax::MotorType::kBrushless};
-    rev::spark::SparkRelativeEncoder sparkMaxEncoder = sparkMaxMotor.GetEncoder();
+    SparkMax motor;
 };

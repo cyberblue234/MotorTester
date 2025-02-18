@@ -2,10 +2,10 @@
 
 void SparkFlexController::SetMotorPower(double power) 
 {
-    sparkFlexMotor.Set(power);
+    motor.Set(power);
 }
 
 double SparkFlexController::GetEncoderCount()
 {
-    return sparkFlexEncoder.GetPosition();
+    return motor.GetEncoder().GetPosition();
 }

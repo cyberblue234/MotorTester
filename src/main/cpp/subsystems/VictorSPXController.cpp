@@ -2,5 +2,5 @@
 
 void VictorSPXController::SetMotorPower(double power) 
 {
-    victorMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, power);
+    motor.Set(motorcontrol::ControlMode::PercentOutput, power);
 }
