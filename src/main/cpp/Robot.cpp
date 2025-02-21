@@ -35,6 +35,7 @@ void Robot::RobotPeriodic()
 	{
 		frc::SmartDashboard::PutNumber("CANrange Distance", -1);
 	}
+	
 }
 
 void Robot::AutonomousInit() {}
@@ -63,6 +64,9 @@ void Robot::TeleopPeriodic()
 	{
 		power = 0.0;
 	}
+
+	el1.SetMotorPower(-power);
+	el2.SetMotorPower(power);
 
 	if (sparkMaxController.has_value())
 	{

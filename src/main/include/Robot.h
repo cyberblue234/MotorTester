@@ -47,5 +47,8 @@ private:
 	int victorSPXID = 1;
 	std::optional<CANrangeController> canRangeController;
 
+	TalonFXController el1{2};
+	TalonFXController el2{7};
+
 	frc::XboxController gamepad{0};
 };
