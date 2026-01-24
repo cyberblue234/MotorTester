@@ -42,7 +42,8 @@ void Robot::AutonomousInit() {}
 
 void Robot::AutonomousPeriodic() {}
 
-void Robot::TeleopInit() {}
+void Robot::TeleopInit() 
+{}
 
 void Robot::TeleopPeriodic() 
 {
@@ -55,18 +56,18 @@ void Robot::TeleopPeriodic()
 	if(direction1)
 	{
 		power = -power;
+		// actuator.SetSpeed(-power);
+		
 	}
 	else if(direction2)
 	{
 		power = power;
+		// actuator.SetSpeed(power);
 	}
 	else
 	{
 		power = 0.0;
 	}
-
-	el1.SetMotorPower(-power);
-	el2.SetMotorPower(power);
 
 	if (sparkMaxController.has_value())
 	{
@@ -89,6 +90,7 @@ void Robot::TeleopPeriodic()
 	{
 		victorSPXController.value().SetMotorPower(power);
 	}
+	
 }
 
 void Robot::DisabledInit() {}

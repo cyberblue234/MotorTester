@@ -12,6 +12,7 @@
 #include "subsystems/TalonFXController.h"
 #include "subsystems/VictorSPXController.h"
 #include "subsystems/CANrange.h"
+#include "subsystems/Actuator.h"
 
 #include "frc/XboxController.h"
 
@@ -46,9 +47,7 @@ private:
 	std::optional<VictorSPXController> victorSPXController;
 	int victorSPXID = 1;
 	std::optional<CANrangeController> canRangeController;
-
-	TalonFXController el1{2};
-	TalonFXController el2{7};
-
+	Actuator actuator;
+	
 	frc::XboxController gamepad{0};
 };
